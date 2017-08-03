@@ -21,21 +21,22 @@ function classLoadDNSManager ($class)
     }
 }
 
-spl_autoload_register('classLoadMultyAnnouncement');
+spl_autoload_register('classLoadDNSManager');
 
-use WHMCS\Module\Addon\MultyLoadAnnouncement\Admin\AdminDispatcher;
+use WHMCS\Module\Addon\DNSManager\Admin\AdminDispatcher;
 
 /**
  * @return array
  */
-function multyloadannouncement_config()
+function dnsmanager_config()
 {
     return array(
-        'name' => 'Multy Load Announcement', // Display name for your module
-        'description' => 'A whmcs addon module , which significance is load multy announcements.',
+        'name' => 'DNS Manager', // Display name for your module
+        'description' => 'a whmcs addon module , which is based on DNSBrood Server.',
         'author' => 'liumapp', // Module author name
         'language' => 'english', // Default language
         'version' => '1.0', // Version number
+        //在参数中设置DNS Server的IP地址
         'fields' => array(
             'isPublished' => array(
                 'FriendlyName' => '是否立即发布',
@@ -48,7 +49,7 @@ function multyloadannouncement_config()
 /**
  * @return array
  */
-function multyloadannouncement_activate()
+function dnsmanager_activate()
 {
     return array(
         'status' => 'success', // Supported values here include: success, error or info
@@ -59,7 +60,7 @@ function multyloadannouncement_activate()
 /**
  * @return array
  */
-function multyloadannouncement_deactivate()
+function dnsmanager_deactivate()
 {
     // Undo any database and schema modifications made by your module here
     return array(
@@ -73,17 +74,17 @@ function multyloadannouncement_deactivate()
  * @param $vars
  * @return string
  */
-function multyloadannouncement_sidebar($vars)
+function dnsmanager_sidebar($vars)
 {
     // Get common module parameters
-    $sidebar = '<p>You are now under the Multy Load Announcement Module!</p>';
+    $sidebar = '<p>You are now under the DNS Manager Module!</p>';
     return $sidebar;
 }
 
 /**
  * @param $vars
  */
-function multyloadannouncement_output($vars)
+function dnsmanager_output($vars)
 {
 
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
