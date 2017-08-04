@@ -27,54 +27,41 @@ class Controller {
         $LANG = $vars['_lang']; // an array of the currently loaded language variables
 
         // Get module configuration parameters
-        $configTextField = $vars['Text Field Name'];
-        $configPasswordField = $vars['Password Field Name'];
-        $configCheckboxField = $vars['Checkbox Field Name'];
-        $configDropdownField = $vars['Dropdown Field Name'];
-        $configRadioField = $vars['Radio Field Name'];
-        $configTextareaField = $vars['Textarea Field Name'];
+        $ip = $vars['serverIp'];
 
         return <<<EOF
 
 <h2>Index</h2>
 
-<p>This is the <em>index</em> action output of the sample addon module.</p>
+<p>This is the <em>index</em> action output of the Dns Manager.</p>
 
 <p>The currently installed version is: <strong>{$version}</strong></p>
 
 <p>Values of the configuration field are as follows:</p>
 
 <blockquote>
-    Text Field: {$configTextField}<br>
-    Password Field: {$configPasswordField}<br>
-    Checkbox Field: {$configCheckboxField}<br>
-    Dropdown Field: {$configDropdownField}<br>
-    Radio Field: {$configRadioField}<br>
-    Textarea Field: {$configTextareaField}
+    DNS server IP: {$ip}<br>
 </blockquote>
 
 <p>
-    <a href="{$modulelink}&action=show" class="btn btn-success">
+    <a href="{$modulelink}&action=check" class="btn btn-success">
         <i class="fa fa-check"></i>
-        Visit valid action link
-    </a>
-    <a href="{$modulelink}&action=invalid" class="btn btn-default">
-        <i class="fa fa-times"></i>
-        Visit invalid action link
+        检查连接
     </a>
 </p>
 
 EOF;
+
     }
 
     /**
      * Show action.
-     *
+     * 检查是否能够成功连接到解析服务器
      * @param array $vars Module configuration parameters
      *
      * @return string
      */
-    public function show($vars)
+    public function check($vars)
     {
         // Get common module parameters
         $modulelink = $vars['modulelink']; // eg. addonmodules.php?module=addonmodule
@@ -82,28 +69,35 @@ EOF;
         $LANG = $vars['_lang']; // an array of the currently loaded language variables
 
         // Get module configuration parameters
-        $configTextField = $vars['Text Field Name'];
-        $configPasswordField = $vars['Password Field Name'];
-        $configCheckboxField = $vars['Checkbox Field Name'];
-        $configDropdownField = $vars['Dropdown Field Name'];
-        $configRadioField = $vars['Radio Field Name'];
-        $configTextareaField = $vars['Textarea Field Name'];
+        $ip = $vars['serverIp'];
+        $url = "http://" . $ip . "/DNSBee/api/testPage";
+
+        $ch = curl_init();
+        curl_setopt($ch , CURLOPT_URL , $url);
+        curl_setopt($ch , CURLOPT_SSL_VERIFYPEER , false);
+        curl_setopt($ch , CURLOPT_POST , true);
+        curl_setopt($ch , CURLOPT_RETURNTRANSFER , 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
 
         return <<<EOF
 
-<h2>Show</h2>
+<h2>检查链接</h2>
 
-<p>This is the <em>show</em> action output of the sample addon module.</p>
+<p>我们将向 <em>解析服务器的Web接口</em> 发送一个post请求，如果有success返回，那么说明连接是成功可行的。 </p>
 
-<p>The currently installed version is: <strong>{$version}</strong></p>
+<p>解析服务器返回的消息为: <strong>{$result}</strong></p>
 
 <p>
     <a href="{$modulelink}" class="btn btn-info">
         <i class="fa fa-arrow-left"></i>
-        Back to home
+        返回
     </a>
 </p>
 
 EOF;
+
     }
+
 }
+

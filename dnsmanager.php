@@ -38,9 +38,12 @@ function dnsmanager_config()
         'version' => '1.0', // Version number
         //在参数中设置DNS Server的IP地址
         'fields' => array(
-            'isPublished' => array(
-                'FriendlyName' => '是否立即发布',
-                'Type' => 'yesno',
+            'serverIp' => array(
+                'FriendlyName' => 'DNS服务器IP地址',
+                'Type' => 'text',
+                'Size' => '25',
+                'Default' => '8.8.8.8',
+                'Description' => '请输入部署DNSBrood的服务器ip地址',
             ),
         )
     );
