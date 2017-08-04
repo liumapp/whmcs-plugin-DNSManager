@@ -27,12 +27,7 @@ class Controller {
         $LANG = $vars['_lang']; // an array of the currently loaded language variables
 
         // Get module configuration parameters
-        $configTextField = $vars['Text Field Name'];
-        $configPasswordField = $vars['Password Field Name'];
-        $configCheckboxField = $vars['Checkbox Field Name'];
-        $configDropdownField = $vars['Dropdown Field Name'];
-        $configRadioField = $vars['Radio Field Name'];
-        $configTextareaField = $vars['Textarea Field Name'];
+        $ip = $vars['serverIp'];
 
         return array(
             'pagetitle' => 'Sample Addon Module',
@@ -44,7 +39,7 @@ class Controller {
             'forcessl' => false, // Deprecated as of Version 7.0. Requests will always use SSL if available.
             'vars' => array(
                 'modulelink' => $modulelink,
-                'configTextField' => $configTextField,
+                'configTextField' => $ip,
                 'customVariable' => 'your own content goes here',
             ),
         );

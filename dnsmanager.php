@@ -24,6 +24,7 @@ function classLoadDNSManager ($class)
 spl_autoload_register('classLoadDNSManager');
 
 use WHMCS\Module\Addon\DNSManager\Admin\AdminDispatcher;
+use WHMCS\Module\Addon\DNSManager\Client\ClientDispatcher;
 
 /**
  * @return array
@@ -95,4 +96,30 @@ function dnsmanager_output($vars)
     $dispatcher = new AdminDispatcher();
     $response = $dispatcher->dispatch($action, $vars);
     echo $response;
+
 }
+
+/**
+ * Client Area Output.
+ *
+ * Called when the addon module is accessed via the client area.
+ * Should return an array of output parameters.
+ *
+ * This function is optional.
+ *
+ *
+ * @return array
+ */
+function addonmodule_clientarea($vars)
+{
+
+    // Dispatch and handle request here. What follows is a demonstration of one
+    // possible way of handling this using a very basic dispatcher implementation.
+    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+    
+    $dispatcher = new ClientDispatcher();
+    return $dispatcher->dispatch($action, $vars);
+
+}
+
+
