@@ -110,7 +110,7 @@ function dnsmanager_output($vars)
  *
  * @return array
  */
-function addonmodule_clientarea($vars)
+function dnsmanager_clientarea($vars)
 {
 
     // Dispatch and handle request here. What follows is a demonstration of one
