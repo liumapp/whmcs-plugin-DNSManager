@@ -19,6 +19,32 @@ class dnsbrood {
 
     private $type;
 
+    private $url = "http://bee.huluwa.cc/";
+
+    private $add = "api/add";
+
+    private $update = "api/update";
+
+    private $select = "api/select";
+
+    private $delete = "api/del";
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
     /**
      * @return mixed
      */
@@ -83,6 +109,45 @@ class dnsbrood {
         $this->type = $type;
     }
 
-    
+    public function addRecord() {
+        $this->url .= $this->add;
+        return $this->sendRequest();
+    }
+
+    public function updateRecord() {
+        $this->url .= $this->update;
+        return $this->sendRequest();
+    }
+
+    public function selectRecord() {
+        $this->url .= $this->select;
+        return $this->sendRequest();
+    }
+
+    public function delRecord() {
+        $this->url .= $this->delete;
+        return $this->sendRequest();
+    }
+
+    /**
+     * @return mixed
+     */
+    private function sendRequest () {
+        $ch = curl_init();
+        curl_setopt($ch , CURLOPT_URL , $this->url);
+        curl_setopt($ch , CURLOPT_SSL_VERIFYPEER ,false);
+        curl_setopt($ch , CURLOPT_RETURNTRANSFER , 1);
+        curl_setopt($ch , CURLOPT_POST , 1);
+        curl_setopt($ch , CURLOPT_POSTFIELDS , json_encode(array(
+            'userNumber' => $this->userNumber,
+            'domain' => $this->domain,
+            'value' => $this->value,
+            'type' => $this->type,
+        )));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
 
 }
