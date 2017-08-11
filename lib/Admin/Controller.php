@@ -1,6 +1,7 @@
 <?php
 
 namespace WHMCS\Module\Addon\DNSManager\Admin;
+use WHMCS\Module\Addon\DNSManager\Common\dnsbrood;
 
 /**
  * Created by PhpStorm.
@@ -69,22 +70,13 @@ EOF;
         $LANG = $vars['_lang']; // an array of the currently loaded language variables
 
         // Get module configuration parameters
-        $ip = $vars['serverIp'];
-        $url = "http://" . $ip . "/DNSBee/api/testPage";
-
-        $ch = curl_init();
-        curl_setopt($ch , CURLOPT_URL , $url);
-        curl_setopt($ch , CURLOPT_SSL_VERIFYPEER , false);
-        curl_setopt($ch , CURLOPT_POST , true);
-        curl_setopt($ch , CURLOPT_RETURNTRANSFER , 1);
-        $result = curl_exec($ch);
-        curl_close($ch);
-
+        $dnsbrood = new dnsbrood();
+        $result = $dnsbrood->testConnect();
         return <<<EOF
 
 <h2>检查链接</h2>
 
-<p>我们将向 <em>解析服务器的Web接口</em> 发送一个post请求，如果有success返回，那么说明连接是成功可行的。 </p>
+<p>我们将向 <em>解析服务器的Web接口</em> 发送一个post请求，如果有消息返回，那么说明连接是成功可行的。 </p>
 
 <p>解析服务器返回的消息为: <strong>{$result}</strong></p>
 

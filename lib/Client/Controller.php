@@ -47,6 +47,7 @@ class Controller {
                 'customVariable' => 'your own content goes here',
             ),
         );
+
     }
 
     /**
