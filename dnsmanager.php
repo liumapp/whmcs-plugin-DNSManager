@@ -92,7 +92,6 @@ function dnsmanager_output($vars)
 {
 
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-
     $dispatcher = new AdminDispatcher();
     $response = $dispatcher->dispatch($action, $vars);
     echo $response;
@@ -116,7 +115,6 @@ function dnsmanager_clientarea($vars)
     // Dispatch and handle request here. What follows is a demonstration of one
     // possible way of handling this using a very basic dispatcher implementation.
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-    
     $dispatcher = new ClientDispatcher();
     return $dispatcher->dispatch($action, $vars);
 

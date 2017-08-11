@@ -1,6 +1,7 @@
 <?php
 
 namespace WHMCS\Module\Addon\DNSManager\Admin;
+
 use WHMCS\Module\Addon\DNSManager\Common\dnsbrood;
 
 /**
@@ -72,6 +73,7 @@ EOF;
         // Get module configuration parameters
         $dnsbrood = new dnsbrood();
         $result = $dnsbrood->testConnect();
+
         return <<<EOF
 
 <h2>检查链接</h2>
