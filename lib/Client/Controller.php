@@ -2,6 +2,8 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Client;
 
+use WHMCS\Module\Addon\DNSManager\Common\dnsbrood;
+
 /**
  * Created by PhpStorm.
  * User: liumapp
@@ -11,7 +13,8 @@ namespace WHMCS\Module\Addon\DNSManager\Client;
  * Time: 5:06 PM
  */
 class Controller {
-    
+
+
     /**
      * Index action.
      *
@@ -21,6 +24,7 @@ class Controller {
      */
     public function index($vars)
     {
+
         // Get common module parameters
         $modulelink = $vars['modulelink']; // eg. addonmodules.php?module=addonmodule
         $version = $vars['version']; // eg. 1.0

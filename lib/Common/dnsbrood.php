@@ -7,7 +7,7 @@
  * Date: 8/10/17
  * Time: 4:48 PM
  */
-namespace WHMCS\Module\Addon\DNSManager\Client;
+namespace WHMCS\Module\Addon\DNSManager\Common;
 
 class dnsbrood {
 
