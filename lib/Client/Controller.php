@@ -11,7 +11,7 @@ namespace WHMCS\Module\Addon\DNSManager\Client;
  * Time: 5:06 PM
  */
 class Controller {
-
+    
     /**
      * Index action.
      *

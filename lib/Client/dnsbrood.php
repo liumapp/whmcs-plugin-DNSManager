@@ -29,6 +29,8 @@ class dnsbrood {
 
     private $delete = "api/del";
 
+    private $test = "api/testPage";
+
     /**
      * @return mixed
      */
@@ -129,21 +131,29 @@ class dnsbrood {
         return $this->sendRequest();
     }
 
+    public function testConnect() {
+        $this->url .= $this->test;
+        return $this->sendRequest(false);
+    }
+
     /**
      * @return mixed
      */
-    private function sendRequest () {
+    private function sendRequest ( $isData = true) {
         $ch = curl_init();
         curl_setopt($ch , CURLOPT_URL , $this->url);
         curl_setopt($ch , CURLOPT_SSL_VERIFYPEER ,false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch , CURLOPT_RETURNTRANSFER , 1);
-        curl_setopt($ch , CURLOPT_POST , 1);
-        curl_setopt($ch , CURLOPT_POSTFIELDS , json_encode(array(
-            'userNumber' => $this->userNumber,
-            'domain' => $this->domain,
-            'value' => $this->value,
-            'type' => $this->type,
-        )));
+        if ($isData) {
+            curl_setopt($ch , CURLOPT_POST , 1);
+            curl_setopt($ch , CURLOPT_POSTFIELDS , json_encode(array(
+                'userNumber' => $this->userNumber,
+                'domain' => $this->domain,
+                'value' => $this->value,
+                'type' => $this->type,
+            )));
+        }
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;

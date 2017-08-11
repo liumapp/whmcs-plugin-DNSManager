@@ -1,4 +1,4 @@
-<h2>Public Client Area Sample Page</h2>
+<h2>Public Client Area Sample Page2</h2>
 
 <p>This is an example of a public client area page that does not require a login to view.</p>
 
