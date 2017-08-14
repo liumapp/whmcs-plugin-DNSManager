@@ -27,12 +27,12 @@ seajs.use('main' , function (main) {
     $(document).ready(function (){
 
         $.lmParam.domainId = "{$domainId}";
-        $.lmParam.addDnsRecordUrl = "{$addDnsRecord}";
-        $.lmParam.initDataUrl = "{$initData}";
-        $.lmParam.updateDnsRecordUrl = "{$updateDnsRecord}";
-        $.lmParam.deleteDnsRecordUrl = "{$deleteDnsRecord}";
-        $.lmParam.addDnsBaseUrl = "{$addDnsBase}";
-        $.lmParam.updateDnsBaseRecordUrl = "{$updateDnsBaseRecord}";
+        $.lmParam.addDnsRecordUrl = "{$addDnsRecordUrl}";
+        $.lmParam.initDataUrl = "{$initDataUrl}";
+        $.lmParam.updateDnsRecordUrl = "{$updateDnsRecordUrl}";
+        $.lmParam.deleteDnsRecordUrl = "{$deleteDnsRecordUrl}";
+        $.lmParam.addDnsBaseUrl = "{$addDnsBaseUrl}";
+        $.lmParam.updateDnsBaseRecordUrl = "{$updateDnsBaseRecordUrl}";
         main.init();
 
     });

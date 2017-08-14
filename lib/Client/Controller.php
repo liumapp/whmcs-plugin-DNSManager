@@ -2,6 +2,7 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Client;
 
+use function Sodium\add;
 use WHMCS\ClientArea;
 use WHMCS\Database\Capsule;
 
@@ -57,17 +58,14 @@ class Controller {
                 'modulelink' => $modulelink,
                 'configTextField' => $ip,
                 'customVariable' => 'your own content goes here',
-                'configParam' => [
+                'domainId' => $domainId,
+                'addDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=addDnsRecord',
+                'initDataUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=initData',
+                'updateDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=updateDnsRecord',
+                'deleteDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=deleteDnsRecord',
+                'addDnsBaseUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=addDnsBase',
+                'updateDnsBaseRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=updateDnsBaseRecord',
 
-                    'domainId' => $domainId,
-                    'addDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=addDnsRecord',
-                    'initDataUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=initData',
-                    'updateDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=updateDnsRecord',
-                    'deleteDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=deleteDnsRecord',
-                    'addDnsBaseUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=addDnsBase',
-                    'updateDnsBaseRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=updateDnsBaseRecord',
-
-                ],
             ),
         );
 
@@ -87,31 +85,17 @@ class Controller {
 
         $ca = new ClientArea();
 
-
-
-
-
-        $conn = \liumapp\dns\models\db::getInstance();
-
-        $queryBuilder = $conn->createQueryBuilder();
-
         $uid = $ca->getUserID();
 
         $domainId = addslashes($_POST['domainId']);
 
-        $queryBuilder
-            ->select('id','type', 'subdomain','value')
-            ->from('lmdns')
-            ->where('uid = ? and domainId = ?')
-            ->setParameter(0, $uid)
-            ->setParameter(1, $domainId);
+        $data = Capsule::table('lmdns')
+            ->select('id' , 'type' , 'subdomain' , 'value')
+            ->where('uid' , '=' , $uid)
+            ->where('domainId' , '=' , $domainId)
+            ->get();
 
-        $result = $queryBuilder->execute();
-
-        $rows = $result->fetchAll();
-
-
-        echo json_encode($rows);
+        return $data;
 
     }
 

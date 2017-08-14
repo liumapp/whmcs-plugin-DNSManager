@@ -56,25 +56,27 @@ function dnsmanager_config()
  */
 function dnsmanager_activate()
 {
+
     $query = "
-CREATE TABLE `lmdns` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `domainId` int(11) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `subdomain` varchar(255) DEFAULT NULL,
-  `ipIndex` tinyint(4) DEFAULT NULL COMMENT 'ip1,ip2…ip10',
-  `value` varchar(255) DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8
-";
+        CREATE TABLE `lmdns` (
+          `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+          `uid` int(11) DEFAULT NULL,
+          `domainId` int(11) DEFAULT NULL,
+          `type` varchar(50) DEFAULT NULL,
+          `subdomain` varchar(255) DEFAULT NULL,
+          `ipIndex` tinyint(4) DEFAULT NULL COMMENT 'ip1,ip2…ip10',
+          `value` varchar(255) DEFAULT NULL,
+          `status` varchar(45) DEFAULT NULL,
+          PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8
+    ";
     full_query($query);
 
     return array(
         'status' => 'success', // Supported values here include: success, error or info
         'description' => 'Load Success !',
     );
+
 }
 
 /**
