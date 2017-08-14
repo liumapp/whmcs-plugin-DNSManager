@@ -29,7 +29,25 @@ class dnsbrood {
 
     private $delete = "api/del";
 
+    private $multyDel = "api/multyDel";
+
     private $test = "api/testPage";
+
+    /**
+     * @return string
+     */
+    public function getMultyDel()
+    {
+        return $this->multyDel;
+    }
+
+    /**
+     * @param string $multyDel
+     */
+    public function setMultyDel($multyDel)
+    {
+        $this->multyDel = $multyDel;
+    }
 
     /**
      * @return mixed
@@ -128,6 +146,11 @@ class dnsbrood {
 
     public function delRecord() {
         $this->url .= $this->delete;
+        return $this->sendRequest();
+    }
+
+    public function multyDelRecord () {
+        $this->url .= $this->multyDel;
         return $this->sendRequest();
     }
 
