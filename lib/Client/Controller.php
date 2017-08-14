@@ -2,12 +2,15 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Client;
 
-use Illuminate\Contracts\Validation\ValidatesWhenResolved;
-use WHMCS\Module\Addon\DNSManager\Common\dnsbrood;
 use WHMCS\ClientArea;
+use WHMCS\Database\Capsule;
 
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+
 require_once $documentRoot . '/dnsManagerHelper.php';
+
+require_once $documentRoot . '/init.php';
+
 /**
  * Created by PhpStorm.
  * User: liumapp
@@ -81,6 +84,34 @@ class Controller {
 
     public function initData ($vars)
     {
+
+        $ca = new ClientArea();
+
+
+
+
+
+        $conn = \liumapp\dns\models\db::getInstance();
+
+        $queryBuilder = $conn->createQueryBuilder();
+
+        $uid = $ca->getUserID();
+
+        $domainId = addslashes($_POST['domainId']);
+
+        $queryBuilder
+            ->select('id','type', 'subdomain','value')
+            ->from('lmdns')
+            ->where('uid = ? and domainId = ?')
+            ->setParameter(0, $uid)
+            ->setParameter(1, $domainId);
+
+        $result = $queryBuilder->execute();
+
+        $rows = $result->fetchAll();
+
+
+        echo json_encode($rows);
 
     }
 
