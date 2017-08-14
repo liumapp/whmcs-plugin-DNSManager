@@ -22,10 +22,19 @@ $uid = $ca->getUserID();
 
 $domainId = addslashes($_POST['domainId']);
 
-$data = Capsule::table('lmdns')
+$datas = Capsule::table('lmdns')
     ->select('id' , 'type' , 'subdomain' , 'value')
     ->where('uid' , '=' , $uid)
     ->where('domainId' , '=' , $domainId)
     ->get();
 
-var_dump($data);die;
+$result = array_map(function ($data) {
+    $tmp = [];
+    foreach ($data as $k => $v) {
+        $tmp[$k] = $v;
+    }
+    return $tmp;
+} , $datas);
+
+echo json_encode($result);
+
