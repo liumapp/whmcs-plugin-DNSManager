@@ -1,43 +1,41 @@
-<h2>Public Client Area Sample Page2</h2>
 
-<p>This is an example of a public client area page that does not require a login to view.</p>
+<link rel='stylesheet' href='/modules/addons/dnsmanager/templates/css/dnspannel.css'>
 
-<p>All the template variables you define along with some <a href="https://developers.whmcs.com/themes/variables/" target="_blank">additional standard template variables</a> are available within this template.<br>You can use the Smarty <em>{ldelim}debug{rdelim}</em> function call to see a full list.</p>
+<script src='/modules/addons/dnsmanager/templates/js/sea.js'></script>
 
-<hr>
+<script src='/modules/addons/dnsmanager/templates/js/dnspannel.js'></script>
 
-<div class="row">
-    <div class="col-sm-3">
-        Module Link
+<div class="lm-dns-container">
+    <div>
+        <button class="lm-add-dns-record btn btn-default">＋添加解析</button>
     </div>
-    <div class="col-sm-7">
-        {$modulelink}
-    </div>
+    <table class="lm-dns-table">
+        <tr class="lm-title-tr">
+            <th width="15"><input type="checkbox"></th>
+            <th>记录类型</th>
+            <th>主机记录</th>
+            <th>记录值</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+    </table>
 </div>
 
-<div class="row">
-    <div class="col-sm-3">
-        Config Text Field Value
-    </div>
-    <div class="col-sm-7">
-        {$configTextField}
-    </div>
-</div>
+<script>
+seajs.use('main' , function (main) {
 
-<div class="row">
-    <div class="col-sm-3">
-        Custom Variable
-    </div>
-    <div class="col-sm-7">
-        {$customVariable}
-    </div>
-</div>
+    $(document).ready(function (){
 
-<hr>
+        $.lmParam.domainId = "{$domainId}";
+        $.lmParam.addDnsRecordUrl = "{$addDnsRecord}";
+        $.lmParam.initDataUrl = "{$initData}";
+        $.lmParam.updateDnsRecordUrl = "{$updateDnsRecord}";
+        $.lmParam.deleteDnsRecordUrl = "{$deleteDnsRecord}";
+        $.lmParam.addDnsBaseUrl = "{$addDnsBase}";
+        $.lmParam.updateDnsBaseRecordUrl = "{$updateDnsBaseRecord}";
+        main.init();
 
-<p>
-    <a href="{$modulelink}&action=secret" class="btn btn-default">
-        <i class="fa fa-lock"></i>
-        Go to page that requires authentication
-    </a>
-</p>
+    });
+
+});
+</script>

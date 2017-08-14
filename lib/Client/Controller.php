@@ -40,11 +40,12 @@ class Controller {
 
         // Get module configuration parameters
         $ip = $vars['serverIp'];
+        $domainId = addslashes($_GET['id']);
 
         return array(
-            'pagetitle' => 'Sample Addon Module',
+            'pagetitle' => '域名解析',
             'breadcrumb' => array(
-                'index.php?m=addonmodule' => 'Sample Addon Module',
+                'index.php?m=addonmodule' => 'dnsManager',
             ),
             'templatefile' => 'publicpage',
             'requirelogin' => true, // Set true to restrict access to authenticated client users
@@ -53,8 +54,53 @@ class Controller {
                 'modulelink' => $modulelink,
                 'configTextField' => $ip,
                 'customVariable' => 'your own content goes here',
+                'configParam' => [
+
+                    'domainId' => $domainId,
+                    'addDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=addDnsRecord',
+                    'initDataUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=initData',
+                    'updateDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=updateDnsRecord',
+                    'deleteDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=deleteDnsRecord',
+                    'addDnsBaseUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=addDnsBase',
+                    'updateDnsBaseRecordUrl' => 'http://dm.huluwa.cc/index.php?m=addonmodule&action=updateDnsBaseRecord',
+
+                ],
             ),
         );
+
+    }
+
+    /**
+     * api operation
+     * @param $vars
+     */
+    public function addDnsRecord ($vars)
+    {
+
+    }
+
+    public function initData ($vars)
+    {
+
+    }
+
+    public function updateDnsRecord ($vars)
+    {
+
+    }
+
+    public function deleteDnsRecord ($vars)
+    {
+
+    }
+
+    public function addDnsBase ($vars)
+    {
+
+    }
+
+    public function updateDnsBaseRecord ($vars)
+    {
 
     }
 

@@ -61,6 +61,7 @@ add_hook('ClientAreaPrimarySidebar', 1, function (MenuItem $primarySidebar)
                 ->setOrder(150);
         }
     }
+
 });
 
 
