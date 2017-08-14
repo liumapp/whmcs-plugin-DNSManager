@@ -7,6 +7,8 @@
  * Date: 8/3/17
  * Time: 2:35 PM
  */
+
+
 if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
@@ -22,7 +24,6 @@ function classLoadDNSManager ($class)
 }
 
 spl_autoload_register('classLoadDNSManager');
-
 use WHMCS\Module\Addon\DNSManager\Admin\AdminDispatcher;
 use WHMCS\Module\Addon\DNSManager\Client\ClientDispatcher;
 

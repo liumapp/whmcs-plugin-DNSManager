@@ -5,8 +5,9 @@ namespace WHMCS\Module\Addon\DNSManager\Client;
 use Illuminate\Contracts\Validation\ValidatesWhenResolved;
 use WHMCS\Module\Addon\DNSManager\Common\dnsbrood;
 use WHMCS\ClientArea;
-use WHMCS\View\Menu\Item as MenuItem;
 
+$documentRoot = $_SERVER['DOCUMENT_ROOT'];
+require_once $documentRoot . '/dnsManagerHelper.php';
 /**
  * Created by PhpStorm.
  * User: liumapp
@@ -26,10 +27,11 @@ class Controller {
      */
     public function index($vars)
     {
-
         $ca = new ClientArea();
+        $ca->requireLogin();
 
-        $ca->requireLogin(); // Uncomment this line to require a login to access this page
+        $helper = new \dnsManagerHelper();
+        $helper->renderDomainMenu();
 
         // Get common module parameters
         $modulelink = $vars['modulelink']; // eg. addonmodules.php?module=addonmodule
@@ -45,7 +47,7 @@ class Controller {
                 'index.php?m=addonmodule' => 'Sample Addon Module',
             ),
             'templatefile' => 'publicpage',
-            'requirelogin' => false, // Set true to restrict access to authenticated client users
+            'requirelogin' => true, // Set true to restrict access to authenticated client users
             'forcessl' => false, // Deprecated as of Version 7.0. Requests will always use SSL if available.
             'vars' => array(
                 'modulelink' => $modulelink,
