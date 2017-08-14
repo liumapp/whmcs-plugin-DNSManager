@@ -2,7 +2,6 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Client;
 
-use function Sodium\add;
 use WHMCS\ClientArea;
 use WHMCS\Database\Capsule;
 
@@ -10,7 +9,7 @@ $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 
 require_once $documentRoot . '/dnsManagerHelper.php';
 
-require_once $documentRoot . '/init.php';
+
 
 /**
  * Created by PhpStorm.
@@ -59,64 +58,17 @@ class Controller {
                 'configTextField' => $ip,
                 'customVariable' => 'your own content goes here',
                 'domainId' => $domainId,
-                'addDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=addDnsRecord',
-                'initDataUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=initData',
-                'updateDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=updateDnsRecord',
-                'deleteDnsRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=deleteDnsRecord',
-                'addDnsBaseUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=addDnsBase',
-                'updateDnsBaseRecordUrl' => 'http://dm.huluwa.cc/index.php?m=dnsmanager&action=updateDnsBaseRecord',
+                'addDnsRecordUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/addDnsRecord.php',
+                'initDataUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/initData.php',
+                'updateDnsRecordUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/updateDnsRecord.php',
+                'deleteDnsRecordUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/deleteDnsRecord.php',
+                'addDnsBaseUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/addDnsBase.php',
+                'updateDnsBaseRecordUrl' => 'http://dm.huluwa.cc/modules/addons/dnsmanager/page/updateDnsBaseRecord.php',
 
             ),
         );
 
     }
 
-    /**
-     * api operation
-     * @param $vars
-     */
-    public function addDnsRecord ($vars)
-    {
-
-    }
-
-    public function initData ($vars)
-    {
-
-        $ca = new ClientArea();
-
-        $uid = $ca->getUserID();
-
-        $domainId = addslashes($_POST['domainId']);
-
-        $data = Capsule::table('lmdns')
-            ->select('id' , 'type' , 'subdomain' , 'value')
-            ->where('uid' , '=' , $uid)
-            ->where('domainId' , '=' , $domainId)
-            ->get();
-
-        return $data;
-
-    }
-
-    public function updateDnsRecord ($vars)
-    {
-
-    }
-
-    public function deleteDnsRecord ($vars)
-    {
-
-    }
-
-    public function addDnsBase ($vars)
-    {
-
-    }
-
-    public function updateDnsBaseRecord ($vars)
-    {
-
-    }
 
 }
