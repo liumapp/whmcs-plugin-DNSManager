@@ -31,7 +31,7 @@ define('saveColumn' , function (require , exports , module) {
             var dataValue = $('.lm-edit-value').val();
             $.ajax(
                 {
-                    url:$.lmParam.updateDnsBaseRecordUrl,
+                    url:$.lmParam.addDnsRecordUrl,
                     data:{
                         id:$.lmParam.tmpRecord[0],
                         domainId:$.lmParam.domainId,
