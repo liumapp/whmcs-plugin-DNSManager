@@ -176,25 +176,41 @@ class dnsbrood {
      * @return mixed
      */
     private function sendRequest ( $isData = true) {
+
         $ch = curl_init();
         curl_setopt($ch , CURLOPT_URL , $this->url);
         curl_setopt($ch , CURLOPT_SSL_VERIFYPEER ,false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch , CURLOPT_RETURNTRANSFER , 1);
         if ($isData) {
-            curl_setopt($ch , CURLOPT_POST , 1);
-            curl_setopt($ch , CURLOPT_POSTFIELDS , json_encode(array(
+            $queryString = $this->dnsbrood_params([
                 'userNumber' => $this->userNumber,
                 'domain' => $this->domain,
                 'value' => $this->value,
                 'type' => $this->type,
-            )));
+            ]);
+            curl_setopt($ch , CURLOPT_POST , 1);
+            curl_setopt($ch , CURLOPT_POSTFIELDS , $queryString);
         }
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
     }
 
-
+    private function dnsbrood_params($postfields, $key = "") {
+        $query_string = "";
+        foreach ($postfields AS $k => $v) {
+            if (is_array($v)) {
+                $query_string.=$this->dnsbrood_params($v, $k);
+            } else {
+                if ($key != "") {
+                    $k = $key;
+                }
+                $query_string .= "$k=" . urlencode($v) . "&";
+            }
+            //$query_string .= "$k=".$v."&";
+        }
+        return $query_string;
+    }
 
 }

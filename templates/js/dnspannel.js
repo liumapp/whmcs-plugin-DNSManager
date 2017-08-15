@@ -424,7 +424,7 @@ define('saveColumn' , function (require , exports , module) {
             var dataValue = $('.lm-edit-value').val();
             $.ajax(
                 {
-                    url:$.lmParam.addDnsRecordUrl,
+                    url:$.lmParam.addDnsBaseUrl,
                     data:{
                         id:$.lmParam.tmpRecord[0],
                         domainId:$.lmParam.domainId,

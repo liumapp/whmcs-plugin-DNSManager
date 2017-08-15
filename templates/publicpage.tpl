@@ -3,7 +3,7 @@
 
 <script src='/modules/addons/dnsmanager/templates/js/sea.js'></script>
 
-<script src='/modules/addons/dnsmanager/templates/js/dnspannel.js'></script>
+<script src='/modules/addons/dnsmanager/templates/js/dnspannel.js?t=12'></script>
 
 <div class="lm-dns-container">
     <div>

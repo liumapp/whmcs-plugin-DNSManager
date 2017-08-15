@@ -2,6 +2,7 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Client;
 
+use function Sodium\add;
 use WHMCS\ClientArea;
 use WHMCS\Database\Capsule;
 
