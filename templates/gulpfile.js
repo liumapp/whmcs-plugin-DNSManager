@@ -1,9 +1,7 @@
-
 'use strict';
 
 var gulp = require('gulp');
 var less = require('gulp-less');
-var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
@@ -24,7 +22,6 @@ gulp.task('less', function() {
 gulp.task("js",function(){
     return gulp.src('src/js/*.js').pipe(concat('dnspannel.js')).pipe(gulp.dest('js/'));
 });
-
 
 gulp.task('watch', function() {
     gulp.watch([

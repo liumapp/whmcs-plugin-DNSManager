@@ -35,6 +35,7 @@ define('addColumn',function (require , exports , module) {
             } else {
                 alert('当前有尚未保存的记录！');
             }
+            e.stopPropagation();
         });
 
     };
