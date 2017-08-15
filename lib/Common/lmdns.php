@@ -67,6 +67,17 @@ class lmdns
         return results;
     }
 
+    public function getOne()
+    {
+        $result = Capsule::table('lmdns')
+            ->where('uid' , '=' , $this->uid)
+            ->where('domainId' , '=' , $this->domainId)
+            ->where('type' , '=' , $this->type)
+            ->get();
+
+        return $result;
+    }
+
     public static function findOne (array $config)
     {
         $result = Capsule::table('lmdns')
@@ -167,4 +178,5 @@ class lmdns
             $this->subdomain = '@';
         }
     }
+
 }

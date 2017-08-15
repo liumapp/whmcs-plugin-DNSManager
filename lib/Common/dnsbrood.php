@@ -33,6 +33,19 @@ class dnsbrood {
 
     private $test = "api/testPage";
 
+    public function initData(array $data)
+    {
+        foreach ($data as $key => $value) {
+
+            if (property_exists( $this , $key)) {
+                $this->{$key} = $value;
+            } else {
+
+            }
+
+        }
+    }
+
     /**
      * @return string
      */
@@ -181,6 +194,7 @@ class dnsbrood {
         curl_close($ch);
         return $result;
     }
+
 
 
 }
