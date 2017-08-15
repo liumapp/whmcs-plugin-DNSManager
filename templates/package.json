@@ -1,0 +1,33 @@
+{
+  "name": "dnspannel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liumapp/dnspannel.git"
+  },
+  "author": "liumapp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liumapp/dnspannel/issues"
+  },
+  "homepage": "https://github.com/liumapp/dnspannel#readme",
+  "dependencies": {
+    "autoprefixer": "^7.0.1",
+    "del": "^2.2.2",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "gulp-tools": "0.0.3",
+    "gulp-util": "^3.0.8",
+    "jquery": "^1.12.4",
+    "pump": "^1.0.2",
+    "seajs": "^3.0.2",
+    "uglifyjs": "^2.4.10"
+  }
+}
