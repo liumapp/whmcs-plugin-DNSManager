@@ -44,8 +44,8 @@ if (is_null($lmdns->getOne())) {
     $lmdns->updateRecord();
 }
 
-$id = $lmdns->getNewRecordId();
 $lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
+$id = $lmdns->id;
 
 $data2 = [
     'userNumber' => 'whmcsUser' . $uid,
