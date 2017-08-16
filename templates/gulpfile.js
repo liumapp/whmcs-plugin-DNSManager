@@ -25,11 +25,11 @@ gulp.task("js",function(){
 
 gulp.task('watch', function() {
     gulp.watch([
-        'src/less/**.less',
+        'src/less/*.less',
         'src/less/**/*.less'
     ], ['less']);
     gulp.watch([
-        'src/js/**.js',
+        'src/js/*.js',
     ], ['js']);
 
 });

@@ -48,7 +48,7 @@ $lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
 
 $data2 = [
     'userNumber' => 'whmcsUser' . $uid,
-    'domain' => $data['subdomain'] . "." .$domain,
+    'domain' => $domain,
     'value' => $data['value'],
     'type' => $lmdns->type,
 ];

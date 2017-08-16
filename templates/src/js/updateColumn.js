@@ -42,7 +42,7 @@ define ('updateColumn' , function (require , exports , module){
             var init = require('initColumn');
             var delColumn = require('delColumn');
             delColumn.del($(this).parent().parent());
-            title_tr.after(init.baseRecord());
+            title_tr.after(init.updateBaseRecord());
         });
 
         $('body').on('click' , '.lm-confirmEdit-base-btn' , function () {
@@ -69,6 +69,7 @@ define ('updateColumn' , function (require , exports , module){
                     }
                 });
         });
+
     };
 
     exports.changeTr = function (tr) {

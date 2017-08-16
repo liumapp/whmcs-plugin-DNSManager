@@ -51,7 +51,7 @@ define('initColumn' , function (require , exports , module) {
         $.lmParam.state = 2;
         var td0=$('<td></td>'),td1=$('<td></td>'),td2=$('<td></td>'),td3=$('<td></td>'),td4=$('<td></td>'),td5=$('<td></td>');
         var tr = $('<tr class="lm-edit-tr"></tr>');
-        td0.append($('<input type="checkbox">'));
+        td0.append($('<input type="checkbox" value="' + $.lmParam.tmpRecord[0] + '">'));
         td1.append($('<p>A</p>'));
         td2.append($('<p>@</p>'));
         td3.append($('<input type="text" class="lm-edit-value">'));

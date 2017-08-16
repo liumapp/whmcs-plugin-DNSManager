@@ -83,7 +83,6 @@ class lmdns
             ->where('domainId' , '=' , $this->domainId)
             ->where('type' , '=' , $this->type)
             ->get();
-
         return $result;
     }
 
