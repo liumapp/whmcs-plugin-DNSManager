@@ -23,6 +23,7 @@ $domainId = addslashes($_POST['domainId']);
 
 $domain = Capsule::table('tbldomains')
     ->where('id', '=', $domainId)->pluck('domain');
+$domain = $domain[0];
 
 $data = [
     'id' => addslashes($_POST['id']),
@@ -47,7 +48,7 @@ $lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
 
 $data2 = [
     'userNumber' => 'whmcsUser' . $uid,
-    'domain' => $domain,
+    'domain' => $data['subdomain'] . "." .$domain,
     'value' => $data['value'],
     'type' => $lmdns->type,
 ];
