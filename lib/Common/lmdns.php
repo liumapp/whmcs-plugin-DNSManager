@@ -93,7 +93,18 @@ class lmdns
             ->where('uid' , '=' , $config['uid'])
             ->where('domainId' , '=' , $config['domainId'])
             ->get();
-        return $result;
+        $result = $result[0];
+        $lmdns = new lmdns();
+        $lmdns->initData([
+            'id' => $result->id,
+            'uid' => $result->uid,
+            'domainId' => $result->domainId,
+            'type' => $result->type,
+            'subdomain' => $result->subdomain,
+            'ipIndex' => $result->ipIndex,
+            'value' => $result->value,
+        ]);
+        return $lmdns;
     }
 
     public function select ()
