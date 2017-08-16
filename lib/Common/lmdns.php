@@ -164,7 +164,6 @@ class lmdns
         } catch (ErrorException $e) {
             echo $e->getMessage();
         }
-
     }
 
     public function getNewIndex ()

@@ -1,5 +1,6 @@
 <?php
 /**
+ * 添加根域解析
  * Created by PhpStorm.
  * User: liumapp
  * Email: liumapp.com@gmail.com
