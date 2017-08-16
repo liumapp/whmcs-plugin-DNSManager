@@ -7,8 +7,6 @@
  * Date: 8/14/17
  * Time: 5:21 PM
  */
-echo "test";
-
 use WHMCS\ClientArea;
 use WHMCS\Database\Capsule;
 
@@ -37,11 +35,12 @@ $lmdns = new \WHMCS\Module\Addon\DNSManager\Common\lmdns();
 
 $lmdns->initData($data);
 
-//$lmdns->addRecord();
-//
-//$id = $lmdns->getNewRecordId();
-//
-//$lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
+$lmdns->addRecord();
+
+$id = $lmdns->getNewRecordId();
+
+$lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
+
 
 $data2 = [
     'userNumber' => 'whmcsUser' . $uid,
@@ -56,12 +55,7 @@ $dnsbrood->initData($data2);
 
 $result = $dnsbrood->addRecord();
 
-var_dump($result);
-
-echo '<br>';
-
-var_dump($lmdns);
-//echo $id;
+echo $id;
 
 
 

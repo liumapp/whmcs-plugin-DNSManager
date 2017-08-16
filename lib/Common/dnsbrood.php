@@ -195,6 +195,7 @@ class dnsbrood {
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
+
     }
 
     private function dnsbrood_params($postfields, $key = "") {

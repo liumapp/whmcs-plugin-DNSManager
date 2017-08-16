@@ -10,7 +10,9 @@
 
 namespace WHMCS\Module\Addon\DNSManager\Common;
 
+use Punic\Exception;
 use WHMCS\Database\Capsule;
+use Whoops\Exception\ErrorException;
 
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 
@@ -39,13 +41,20 @@ class lmdns
 
     public $tableName = 'lmdns';
 
+    public $status;
+
     public function initData(array $data)
     {
 
         foreach ($data as $key => $value) {
             if (property_exists( $this , $key)) {
-                $this->{$key} = $value;
-            } else {
+
+                if (is_null($value)) {
+                    continue;
+                } else {
+                    $this->{$key} = $value;
+                }
+
             }
         }
 
@@ -64,7 +73,7 @@ class lmdns
             ->where('type' , '=' , $config['type'])
             ->get();
 
-        return results;
+        return $results;
     }
 
     public function getOne()
@@ -136,16 +145,26 @@ class lmdns
 
     public function ReloadIpIndex ($uid , $domainId , $type)
     {
-        $data = $this->getData(['uid' => $uid , 'domainId' => $domainId , 'type' => $type]);
-        $i = 1;
-        foreach ($data as $d)
-        {
-            $model = new lmdns();
-            $model->initData($d);
-            $model->ipIndex = $i;
-            $model->updateRecord();
-            $i++;
+        try {
+            $data = $this->getData(['uid' => $uid , 'domainId' => $domainId , 'type' => $type]);
+            $i = 1;
+            foreach ($data as $d)
+            {
+                $model = new lmdns();
+                $model->id = $d->id;
+                $model->value = $d->value;
+                $model->domainId = $d->domainId;
+                $model->type = $d->type;
+                $model->uid = $d->uid;
+                $model->subdomain = $d->subdomain;
+                $model->ipIndex = $i;
+                $model->updateRecord();
+                $i++;
+            }
+        } catch (ErrorException $e) {
+            echo $e->getMessage();
         }
+
     }
 
     public function getNewIndex ()
@@ -165,8 +184,9 @@ class lmdns
 
     public function getNewRecordId ()
     {
-        $result = Capsule::select('SELECT LAST_INSERT_ID()');
-        return $result;
+        $result = Capsule::select('SELECT LAST_INSERT_ID() as id');
+        $result = $result[0];
+        return $result->id;
     }
 
     public function validate ()
