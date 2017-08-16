@@ -42,8 +42,7 @@ if (is_null($lmdns->getOne())) {
 } else {
     $lmdns->updateRecord();
 }
-
-$id = $lmdns->getNewRecordId();
+$id = $lmdns->id;
 $lmdns->ReloadIpIndex($uid , $domainId , $lmdns->type);
 
 $data2 = [

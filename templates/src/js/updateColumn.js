@@ -62,7 +62,7 @@ define ('updateColumn' , function (require , exports , module){
                         $('.msg-container').remove();
                         $.lmParam.state = 1;
                         var saveColumn = require('saveColumn');
-                        saveColumn.changeBaseTr(tr , this.data , data);
+                        saveColumn.changeBaseTr(tr , $('.lm-edit-value').val() , data);
                     },
                     error:function(data){
                         $.lmParam.state = 2;

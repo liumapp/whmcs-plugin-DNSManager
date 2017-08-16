@@ -172,7 +172,7 @@ class lmdns
             ->where('uid' , '=' , $this->uid)
             ->where('domainId' , '=' , $this->domainId)
             ->where('type' , '=' , $this->type)
-            ->get();
+        ->get();
         if (!isset($result['ipIndex'])) {
             return 1;
         } else {

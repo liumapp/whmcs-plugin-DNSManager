@@ -458,7 +458,6 @@ define('saveColumn' , function (require , exports , module) {
         lastTd = $(tr.children()[tr.children().length - 1]);
         lastTd.empty();
         lastTd.append($('<a href="javascript:void(0)" class="lm-edit-base-btn">修改</a>'));
-
     };
 
     exports.changeTr = function (tr , index) {
@@ -544,7 +543,7 @@ define ('updateColumn' , function (require , exports , module){
                         $('.msg-container').remove();
                         $.lmParam.state = 1;
                         var saveColumn = require('saveColumn');
-                        saveColumn.changeBaseTr(tr , this.data , data);
+                        saveColumn.changeBaseTr(tr , $('.lm-edit-value').val() , data);
                     },
                     error:function(data){
                         $.lmParam.state = 2;
